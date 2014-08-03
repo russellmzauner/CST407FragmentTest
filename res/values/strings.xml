@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FragmentTest</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_takepicture">Take A Picture</string>
+    <string name="action_viewpicture">View Last Picture</string>
+    
+    <!-- placeholders for settings activity, replace with edittext/password textviews -->
+    <string name="button_1">Wish 1</string>
+    <string name="button_2">Wish 2</string>
+    <string name="button_3">Wish 3</string>
+
+    <!-- code from tutorialspoint/android/android_camera -->
+    
+   
+   
+   <string name="Capture">Capture</string>
+    
+</resources>
