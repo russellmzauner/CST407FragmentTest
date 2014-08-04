@@ -13,51 +13,9 @@ import android.widget.Toast;
 
 public class CaptureActivity extends Activity {
 
-	
-	private Camera mCamera;
-    private CameraHelper mPreview;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_capture);
-
-        // Create an instance of Camera
-        mCamera = getCameraInstance();
-
-        // Create our Preview view and set it as the content of our activity.
-        mPreview = new CameraHelper(this, mCamera);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
-        preview.addView(mPreview);
-    }
-    
-    /** A safe way to get an instance of the Camera object. */
-    public static Camera getCameraInstance(){
-        Camera c = null;
-        try {
-            c = Camera.open(); // attempt to get a Camera instance
-        }
-        catch (Exception e){
-            // Camera is not available (in use or does not exist)
-        }
-        return c; // returns null if camera is unavailable
-    }
-}
-	
-	
-	
-	
-/*
-
 	   private Camera cameraObject;
 	   private CameraHelper cameraHelper;
 	 //  private ImageView pic;
-	   
-	   
-
-	   
-	   
-	   
 
 	   private PictureCallback capturedIt = new PictureCallback() {
 
@@ -102,4 +60,4 @@ public class CaptureActivity extends Activity {
 	   }
 
 
-}*/
+}

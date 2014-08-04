@@ -127,10 +127,9 @@ int layout activity_capture 0x7f030000
 int layout activity_display 0x7f030001
 int layout activity_main 0x7f030002
 int layout activity_settings 0x7f030003
-int layout fragment_camera 0x7f030004
-int layout fragment_location 0x7f030005
-int layout fragment_textedit 0x7f030006
-int layout fragment_textview 0x7f030007
+int layout fragment_location 0x7f030004
+int layout fragment_textedit 0x7f030005
+int layout fragment_textview 0x7f030006
 int menu main 0x7f0a0000
 int string Capture 0x7f050028
 int string action_settings 0x7f050022
