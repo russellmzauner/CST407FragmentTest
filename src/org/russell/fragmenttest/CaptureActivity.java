@@ -10,9 +10,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.util.Log;
 
 public class CaptureActivity extends Activity {
 
+	   private final static String TAG = "CaptureActivity";
 	   private Camera cameraObject;
 	   private CameraHelper cameraHelper;
 	 //  private ImageView pic;
@@ -30,7 +32,7 @@ public class CaptureActivity extends Activity {
 	      {
 	         Toast.makeText(getApplicationContext(), "taken", Toast.LENGTH_SHORT).show();    	
 	      }
-	      cameraObject.release();
+	      //cameraObject.release();
 	   }
 	};
 
@@ -44,6 +46,15 @@ public class CaptureActivity extends Activity {
 	      FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 	      preview.addView(cameraHelper);
 	   }
+
+	   @Override
+	   protected void onDestroy() {
+		   if(cameraObject != null) {
+			   cameraObject.release();
+			   cameraObject = null;
+		   }
+		   super.onDestroy();
+	   }
 	   
 	   public static Camera isCameraAvailiable(){
 		      Camera object = null;
@@ -51,6 +62,7 @@ public class CaptureActivity extends Activity {
 		         object = Camera.open(); 
 		      }
 		      catch (Exception e){
+			      Log.e(TAG, "Camera open exception: " + e);
 		      }
 		      return object; 
 		   }
