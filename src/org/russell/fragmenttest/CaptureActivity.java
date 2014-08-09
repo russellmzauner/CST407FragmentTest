@@ -6,14 +6,14 @@ import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class CaptureActivity extends Activity {
 
-	   private Camera cameraObject;
+	   private Camera mCameraObject;
 	   private CameraHelper cameraHelper;
 	 //  private ImageView pic;
 
@@ -30,7 +30,7 @@ public class CaptureActivity extends Activity {
 	      {
 	         Toast.makeText(getApplicationContext(), "taken", Toast.LENGTH_SHORT).show();    	
 	      }
-	      cameraObject.release();
+	      
 	   }
 	};
 
@@ -39,8 +39,8 @@ public class CaptureActivity extends Activity {
 	      super.onCreate(savedInstanceState);
 	      setContentView(R.layout.activity_capture);
 	  //    pic = (ImageView)findViewById(R.id.imageView1);
-	      cameraObject = isCameraAvailiable();
-	      cameraHelper = new CameraHelper(this, cameraObject);
+	      mCameraObject = isCameraAvailiable();
+	      cameraHelper = new CameraHelper(this, mCameraObject);
 	      FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
 	      preview.addView(cameraHelper);
 	   }
@@ -51,13 +51,22 @@ public class CaptureActivity extends Activity {
 		         object = Camera.open(); 
 		      }
 		      catch (Exception e){
+		    	  Log.e("CaptureActivity", "Camera open exception: " + e);
 		      }
 		      return object; 
 		   }
 	   
 	   public void snapIt(View view){
-	      cameraObject.takePicture(null, null, capturedIt);
+	      mCameraObject.takePicture(null, null, capturedIt);
 	   }
 
+	   @Override
+	   public void onDestroy(){
+		   super.onDestroy();
+		   if(mCameraObject != null) {
+				mCameraObject.release();
+				mCameraObject = null;
+			}
+	   }
 
 }
